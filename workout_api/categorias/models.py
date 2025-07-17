@@ -2,6 +2,11 @@ from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from workout_api.contrib.models import BaseModel
 
+# --- INÍCIO DA CORREÇÃO ---
+# O caminho de importação foi corrigido, removendo a duplicação de "workout_api".
+from workout_api.atleta.models import AtletaModel
+# --- FIM DA CORREÇÃO ---
+
 
 class CategoriaModel(BaseModel):
     __tablename__ = 'categorias'

@@ -1,13 +1,14 @@
+# workout_api/categorias/schemas.py
 from typing import Annotated
+from pydantic import Field
+from workout_api.contrib.schemas import BaseSchema, OutMixin
 
-from pydantic import UUID4, Field
-from workout_api.contrib.schemas import BaseSchema
+class Categoria(BaseSchema):
+    # CORREÇÃO: Aumentamos o tamanho máximo do nome para 50
+    nome: Annotated[str, Field(description='Nome da categoria', example='Scale', max_length=50)]
 
+class CategoriaIn(Categoria):
+    pass
 
-class CategoriaIn(BaseSchema):
-    nome: Annotated[str, Field(description='Nome da categoria', example='Scale', max_length=10)]
-
-
-class CategoriaOut(CategoriaIn):
-    id: Annotated[UUID4, Field(description='Identificador da categoria')]
-
+class CategoriaOut(Categoria, OutMixin):
+    pass
